@@ -1,21 +1,24 @@
 /* 
 ============ 
-사용법 : 
-아래 함수의 옵션을 수정한 후, 파일 내용을 전부 복사해 브라우저 콘솔에 넣고 실행해주세요~!
+사용법
+- 아래 함수의 옵션을 수정한 후, 파일 내용을 전부 복사해 브라우저 콘솔에 넣고 실행해주세요~!
 ============
  */
 
-filter({
-  hideCleared: 1, // 푼 문제 숨김: 1  ||  삭제 안함: 0
-  sortOrder: 0 // 오름차순: 1  ||  내림차순: 0
-});
+filter();
 
 /* 
 ============ 
-DOM 조작 코드 - 아래 코드는 수정하시면 안돼요~!
+DOM 조작 코드
 ============
  */
-function filter({ hideCleared, sortOrder }) {
+function filter() {
+  const option = prompt(
+    "문제 정렬 옵션을 입력해 주세요\n1) 숨기고 오름차순\n2) 숨기고 내림차순\n3) 숨기지 않고 오름차순\n4) 숨기지 않고 내림차순",
+    "예: 3"
+  );
+  const hideCleared = option <= 2 ? true : false;
+  const sortOrder = option % 2 ? true : false;
   // 보이는 페이지의 문제 목록을 변수에 저장
   const list = document.querySelector("div.algorithm-list > .row");
   let questions = [...document.querySelectorAll("div.col-item")];
